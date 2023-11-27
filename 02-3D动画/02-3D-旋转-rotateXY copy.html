@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+
+      /* 这是3d旋转，坐标原点在正方形中间，旋转过后y轴指向了屏幕里面 */
+      transform: rotateX(-33.5deg) rotateY(45deg);
+    }
+  </style>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

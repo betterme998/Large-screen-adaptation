@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+      /* 形变 */
+      /* 在透视下，距离眼睛越近，图像越大 */
+      transform: perspective(300px) translateZ(100px);
+    }
+  </style>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>

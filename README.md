@@ -30,8 +30,31 @@
 .用 transform 时，坐标系的原点默认会移动到元素的中心
 .因为 transform-origin 属性默认值为 50% 50%，即使原点将会作为变换元素的中心点
 .用 transform 属性旋转或倾斜元素，会变换或倾斜元素的坐标，并且该元素所有后续变换都将基于新坐标系变换
+.不同的顺序会导致不同的变换结果
 
 # 3. 3D 动画
+
+.常见的函数 transform ,会使用 CUP 硬件加速
+.平移：translate3d(tx,ty.tz): translateX(tx) translateY(ty) translateZ(tz)
+.缩放:scale3d(sx,sy,sz): scaleX(sx) scaleY(sy) scaleZ(sz)
+.旋转:rotate3d(x,y,z,a): rotateX(x) rotateY(y) rotateZ(z)
+
+3D 透视-perspective
+(必须有三维空间才能产生透视)
+.定了观察者与 z=0 平面的距离，使具有三维位置变换的元素产生透视效果（z 表示 z 轴）
+.z>0 的三维元素比正常的大，而在<0 时则比正常的小，大小程度由该属性的值决定（z 值>0，z 屏面在眼睛和屏幕之间。屏幕的画面大于正常画面。z<0,z 平面在屏幕后面。屏幕画面小于正常画面）
+.必须是 none length 中的一个
+none：没有应用 perspective 样式
+length：定义 z 大小
+
+.透视的两种使用方式： 1.在父元素上定义 css 透视属性 2.如果它是子元素，或单元素子元素，可以使用函数 perspective()
+
+.3D 空间- transform-style
+.该属性用于设置元素的子元素是定位在 3D 空间中还是平展在元素的 2D 平面中
+
+.值类型
+.flat：指示元素的子元素位于元素本身的平面内.
+.preserve-3d：指示元素的子元素应位于 3d 空间中
 
 # 4. 2.5D 和 3D 动画实战
 
