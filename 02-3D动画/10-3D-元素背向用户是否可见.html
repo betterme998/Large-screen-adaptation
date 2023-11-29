@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      position: relative;
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+      /* 在父元素添加透视效果 */
+      /* >0时，离眼睛进的地方大，离眼睛远的地方眼睛小 */
+      perspective: 600px;
+    }
+    .item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: pink;
+
+      /* 形变 */
+      transform: rotateY(180deg);
+
+      /* 元素背向是否可见 */
+      /* 不可见 90度 180度 都看不见要完全背对 */
+      /* backface-visibility: hidden; */
+      /* 可见 */
+      backface-visibility: visible;
+
+      /* 帧动画 */
+      animation: loop 3s linear infinite;
+    }
+    @keyframes loop {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+  </style>
+  <body>
+    <div class="box">
+      <div class="item">10</div>
+    </div>
+  </body>
+</html>
