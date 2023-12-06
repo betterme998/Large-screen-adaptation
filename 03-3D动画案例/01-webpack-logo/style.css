@@ -17,9 +17,9 @@ ul {
 .webpack-logo {
   height: 200px;
   width: 100%;
-  border: 1px solid red;
   position: relative;
 }
+/* 小方块 */
 .cube-inner {
   position: absolute;
   left: 50%;
@@ -27,7 +27,25 @@ ul {
   margin: -25px 0px 0px -25px;
   width: 50px;
   height: 50px;
-  border: 1px solid red;
+  /* border: 1px solid white; */
+
+  /* 启动3d空间 */
+  transform-style: preserve-3d;
+  transform: rotateX(-33.5deg) rotateY(45deg);
+
+  /* 帧动画 */
+  animation: innerLoop 6s ease-in-out infinite;
+}
+
+@keyframes innerLoop {
+  0% {
+    transform: rotateX(-33.5deg) rotateY(45deg);
+  }
+  /* 50%时旋转完成（3秒）然后停3秒 到100%后再旋转 */
+  50%,
+  100% {
+    transform: rotateX(-33.5deg) rotateY(-315deg);
+  }
 }
 .cube-inner li {
   position: absolute;
@@ -37,4 +55,78 @@ ul {
   height: 100%;
   background-color: #175d96;
   border: 1px solid white;
+  box-sizing: border-box;
+}
+
+.cube-inner .top {
+  transform: rotateX(90deg) translateZ(25px);
+}
+.cube-inner .button {
+  transform: rotateX(-90deg) translateZ(25px);
+}
+.cube-inner .button {
+  transform: rotateX(0deg) translateZ(25px);
+}
+.cube-inner .back {
+  transform: rotateX(-180deg) translateZ(25px);
+}
+.cube-inner .left {
+  transform: rotateY(-90deg) translateZ(25px);
+}
+.cube-inner .right {
+  transform: rotateY(90deg) translateZ(25px);
+}
+
+/* 大方块 */
+.cube-outer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -50px 0px 0px -50px;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform: rotateX(-33.5deg) rotateY(45deg);
+  box-sizing: border-box;
+
+  animation: outerLoop 6s ease-in-out infinite;
+}
+
+@keyframes outerLoop {
+  0% {
+    transform: rotateX(-33.5deg) rotateY(45deg);
+  }
+  50%,
+  100% {
+    transform: rotateX(-33.5deg) rotateY(405deg);
+  }
+}
+.cube-outer li {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(141, 214, 249, 0.5);
+  border: 1px solid white;
+  box-sizing: border-box;
+}
+
+.cube-outer .top {
+  transform: rotateX(90deg) translateZ(50px);
+}
+.cube-outer .button {
+  transform: rotateX(-90deg) translateZ(50px);
+}
+.cube-outer .front {
+  transform: rotateX(0deg) translateZ(50px);
+}
+.cube-outer .back {
+  transform: rotateX(-180deg) translateZ(50px);
+}
+.cube-outer .left {
+  transform: rotateY(-90deg) translateZ(50px);
+}
+.cube-outer .right {
+  transform: rotateY(90deg) translateZ(50px);
 }
