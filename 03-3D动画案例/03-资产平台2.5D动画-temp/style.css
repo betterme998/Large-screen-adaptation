@@ -108,3 +108,15 @@
     transform: translateY(6px);
   }
 }
+
+@keyframes centerA {
+  35%,
+  85% {
+    transform: translateY(-6px);
+  }
+  50%,
+  100%,
+  85% {
+    transform: translateY(2px);
+  }
+}
