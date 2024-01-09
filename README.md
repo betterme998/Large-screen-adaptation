@@ -65,3 +65,41 @@ length：定义 z 大小
 # 4. 2.5D 和 3D 动画实战
 
 # 5. 动画的优化
+
+.浏览器渲染流程
+
+1.解析 html，构建 DOM Tree
+
+2.对 css 文件进行解析，解析出对应的规则树
+
+3.DOM Tree + CSSOM 生成 Render Tree（渲染树）
+
+4.布局（layout）：计算出每个节点的宽度，高度和位置信息
+.页面元素位置，大小发送变化，往往会导致其他节点联动，需要重新计算布局，这个过程称为回流（Reflow） （）
+
+5.绘制（Paint）：将可见的元素绘制在屏幕中。
+.默认标准流是在同一层上绘制，一些特殊属性会创建新的层绘制，这些层称为渲染层。
+.一些不影响布局的 css 修改也会导致渲染层重绘（Repaint），回流必然会重绘
+
+6.Composite 合成层：一些特殊属性会创建一个新的合成层（CompositingLayer），并可以利用 GPU 来加速绘制，这是浏览器的一种优化手段。合成层确实可以提高性能，但是它以消耗内存为代价，因此不能滥用为 web 性能优化策略和过度使用.
+
+一.创建一个新的渲染层（减少回流）
+.有明确的定位属性（relative，fixed，sticky，absolute）
+.透明的（opacity 小于 1）
+.有 CSS transform 属性（不为 none）
+.当前有对于 opacity，transform，fliter，backdrop-filter 应用动画
+.backface-visibility 属性为 hidden
+
+二.创建合成层。合成层会开始 GPU 加速页面渲染，但不能滥用
+.对 opacity，transform，fliter，backropfilter 应用了 animation 或 transition（需要是 active（正在进行的） 的 animation 或者 transition ）
+.有 3D transform 函数：比如：translate3d，translateZ，scale3d，rotate3d
+.will-change 设置为 opacity，transform，top，left，bottom，right，比如：will-change：opacity，transform；
+
+# 6. Canvas
+
+1.邂逅 Canvas
+.Canvas 提供了非常多的 javaScript 绘图 API（如：绘制路径，矩形，圆，文本，和图像等），集合<canvas>元素可以绘制各种 2D 图像
+2.Canvas 绘制图像
+3.Canvas 样式和颜色
+4.Canvas 状态和形变
+5.Canvas 动画和案例
