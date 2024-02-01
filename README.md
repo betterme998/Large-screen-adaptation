@@ -176,7 +176,117 @@ anticlockwise:为一个布尔值，为 true，是逆时针方向，为 false，�
 
 1.调用 beginPath()来生成路径 2.调用 arc()函数来绘制圆弧 3.闭合路径 closePath(),不是必须 4.调用 stroke(0 函数来描边，或者调用 fill()函数来填充，路径会自动闭合)
 
-2.Canvas 绘制图像
-3.Canvas 样式和颜色
-4.Canvas 状态和形变
-5.Canvas 动画和案例
+路径绘制矩形：绘制矩形的另一个方法
+
+1.用到 rect 函数绘制，即将一个矩形路径增加到当前路径上
+
+2.rect(x,y,width,height) :绘制一个左上角坐标为（x，y），宽高为 width，height 的矩形
+
+3.执行该方法时，moveTo(x,y)方法自动设置坐标参数（0，0）
+
+色彩 Colors
+
+1.fillStyle = color ：设置图形的填充颜色，需要在 fill()函数前面调用
+
+2.strokeStyle = color：设置图形轮廓的颜色，需要在 stroke()函数前调用
+
+透明度
+
+1.方式一：结合 rgba
+
+2.globalAlpha 属性：这个属性影响到 canvas 里所有图形的透明的
+
+线性 Line style
+
+调用 lineTo() 函数绘制的线条，是可以通过一系列属性来设置线的样式
+
+1.lineWidth = value:设置线条宽度. 是指定路径中心到两边据距离。
+
+（如果以路径为中心就是 x 轴为整数）如果画 1px 像素就是两边各 0.5px。那两边像素格子会多出 0.5px 会以画笔颜色一般进行填充.所以用 canvas 画 1px 线条时，不准确
+
+（如果以 3.5 或者 4.5 或 5.5 等 x.5 为中心）画出的 1px 为准确的线
+2.lineCap = type:设置线条末端样式
+
+3.lineJoin = type : 设置线条与线条间接合处的样式
+
+.....
+
+绘制文本
+
+1.fillText(text,x,y [,maxWidth])
+
+.在 x,y 位置，填充指定文本
+.绘制最大宽度（可选）
+
+2.strokeText(text,x,y [,maxWidth])
+
+.在 x,y 位置，填充指定文本
+.绘制最大宽度（可选）
+
+文本的样式需要在绘制前调用
+
+1.font = value : 当前绘制文本的样式。和 Css font 属性相同的语法。默认字体是 10px sans-serif
+
+2.textAlign = value : 文本对齐选项。可选值：start,enf,left,right or center. 默认 start
+
+3.textBaseline = value：基线对齐选项。可选的值包括：top,hanging,middle,alphabetic,ideographic,bottom
+
+# 6.2.Canvas 绘制图像
+
+绘制图片
+
+.绘制图片，可以使用 drawlmage 方法将它渲染到 canvas 里，drawlmage 方法有三种形态
+
+1.drawImage(image,x,y)
+.其中 image 是 image 或者 canvas 对象，x 和 y 是其在目标 canvas 里的起始坐标
+
+2.drawImage(image,x,y,width,height)
+.多出的宽高控制画入 canvas 时，应该缩小的大小
+
+3.drawImage(image,sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight)
+.前四个和上面一样，后四个定义裁剪的目标显示位置和大小
+
+图片来源，canvas 的 api 可以使用下面这些类型中的一种作为图片的源：
+
+1.HTMLlmageElement:这些图片是由 image()函数构造出来的，或任何<img>元素
+
+2.HTMLVideoElement：用一个 HTML 的<video>元素作为你的图片源，可以从视频中抓取当前帧作为一个图像
+
+# 6.4.Canvas 状态和形变
+
+1.Canvas 绘画状态
+.--是当前绘画时所产生的样式和变形的一个快照
+.--Canvas 在绘画时，会产生相应的绘画状态，其实我们是可以将某些绘画的状态存储在栈中来为以后复用
+.--Canvas 绘画状态的可以调用 save 和 restore 方法是用来保存和恢复，这个两个方法没有参数，并且是成对存在的
+
+.保存和恢复 canvas 绘画状态
+.--save():保存画布的所有绘画状态
+.--restore():恢复画布 canvas 的所有绘画状态
+
+.canvas 绘画状态包括
+.--当前应用的变形（即移动，旋转-缩放）
+.--以及这些属性：strokeStyle,fillStyle,globalAlpha,lineWidth,lineCap,lineJoin,miterLimit,shadowOffsetX,shadowOffsetY,shadowBlur,shadouwColor,font,textASlign,textBaseline.....
+.--当前的裁剪路径（clipping path）
+
+2.变形 Transform
+.--可以将坐标原点移动到另一点，形变可以对网格进行旋转和缩放
+.--canvas 的形变有 4 种方法实现
+.----translate(x,y):用来移动 canvas 和它的原点到一个不同的位置
+.----rotate(angle):用于以原点为中心旋转 canvas，即 z 轴旋转（angle 是旋转的弧度，是顺时针方向，以弧度为单位）
+.----scale(x,y):用来增减图形在 canvas 中像素数目，对图形进行缩小或放大
+.----transform(a,b,c,d,e,f):允许对变形矩形直接修改，这个方法是将当前的变形矩阵乘上一个基于自身参数的矩阵
+
+注意：在做变形之前调用 save 方法保存状态是一个好习惯
+.调用 restore 方法比手动恢复原先的状态要简单的多
+.形变需要在绘制图形前调用
+
+# 5.Canvas 动画和案例
+
+1.对画布上所有图形进行一帧一帧的重绘（比如 1 秒绘 60 帧，就可以绘出流畅的动画）
+.canvas 三种方法可以实现（定时执行重绘）
+.--setInterval
+.--setTimeout
+.--requestAnimationFrame
+
+2.Canvas 画出一帧动画的基本步骤（如果画出流程动画，1s 需绘 60 帧）
+.--第一步：用 clearRect 方法清空 canvas。除非接下来绘制内容会填满 canvas，否则需要清空所有

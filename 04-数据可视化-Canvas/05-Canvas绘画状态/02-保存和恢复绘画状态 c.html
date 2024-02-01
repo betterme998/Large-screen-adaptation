@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300px" height="300px">
+      浏览器不兼容canvas
+    </canvas>
+    <script>
+      window.onload = function () {
+        // 1.拿到canvas的元素对象
+        let canvasEl = document.getElementById("tutorial");
+
+        if (!canvasEl.getContext("2d")) {
+          return;
+        }
+        // 2.拿到canvas渲染的上下文
+        let ctx = canvasEl.getContext("2d"); //2d
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(10, 10, 30, 15);
+        ctx.save();
+
+        ctx.fillStyle = "green";
+        ctx.fillRect(50, 10, 30, 15);
+        ctx.save();
+
+        ctx.fillStyle = "blue";
+        ctx.fillRect(90, 10, 30, 15);
+        ctx.save();
+
+        ctx.restore(); //blue
+        // ctx.fillStyle = "blue";
+        ctx.fillRect(90, 40, 30, 80);
+
+        ctx.restore(); //green
+        // ctx.fillStyle = "green";
+        ctx.fillRect(50, 40, 30, 80);
+
+        ctx.restore(); //red
+        // ctx.fillStyle = "red";
+        ctx.fillRect(10, 40, 30, 80);
+
+        //  --是当前绘画时所产生的样式和变形的一个快照
+        // .--Canvas 在绘画时，会产生相应的绘画状态，其实我们是可以将某些绘画的状态存储在栈中来为以后复用
+        // .--Canvas 绘画状态的可以调用 save 和 restore 方法是用来保存和恢复，这个两个方法没有参数，并且是成对存在的
+
+        // 2.保存和恢复 canvas 绘画状态
+        // .--save():保存画布的所有绘画状态
+        // .--restore():恢复画布 canvas 的所有绘画状态
+
+        // 3.canvas 绘画状态包括
+        // .--当前应用的变形（即移动，旋转-缩放）
+        // .--以及这些属性：strokeStyle,fillStyle,globalAlpha,lineWidth,lineCap,lineJoin,miterLimit,shadowOffsetX,shadowOffsetY,shadowBlur,shadouwColor,font,textASlign,textBaseline.....
+        // .--当前的裁剪路径（clipping path）
+      };
+    </script>
+  </body>
+</html>

@@ -24,14 +24,21 @@
         }
         // 2.拿到canvas渲染的上下文
         let ctx = canvasEl.getContext("2d"); //2d
-        ctx.beginPath();
-        // x,y,r,startRad,endRad,,顺时针
-        ctx.arc(50, 50, 25, 0, Math.PI * 2, false);
-        ctx.stroke();
 
+        // 透明度:针对canvas中所有图形
+        ctx.globalAlpha = 0.3;
+
+        // 2.修改画笔颜色
+        ctx.fillStyle = "red";
+        ctx.fillRect(0, 0, 100, 50);
+
+        ctx.fillStyle = "#cdcdcd";
+        ctx.fillRect(200, 0, 100, 50);
+
+        ctx.fillStyle = "green";
         ctx.beginPath();
-        ctx.arc(150, 150, 25, 0, Math.PI);
-        ctx.stroke();
+        ctx.rect(0, 100, 100, 50);
+        ctx.fill();
       };
     </script>
   </body>

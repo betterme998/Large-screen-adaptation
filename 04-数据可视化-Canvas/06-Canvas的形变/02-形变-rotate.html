@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300px" height="300px">
+      浏览器不兼容canvas
+    </canvas>
+    <script>
+      window.onload = function () {
+        // 1.拿到canvas的元素对象
+        let canvasEl = document.getElementById("tutorial");
+
+        if (!canvasEl.getContext("2d")) {
+          return;
+        }
+        // 2.拿到canvas渲染的上下文
+        let ctx = canvasEl.getContext("2d"); //2d
+
+        // 2.保存形变前状态
+        ctx.save();
+        // 1.形变
+        ctx.translate(100, 100);
+        ctx.rotate((Math.PI / 180) * 45);
+        ctx.fillRect(0, 0, 50, 50);
+
+        // ctx.translate(100, 0);
+        // ctx.fillRect(0, 0, 50, 50);
+        // 绘图结束（恢复形变之前的状态）
+        ctx.restore();
+
+        ctx.save();
+        ctx.translate(100, 0);
+        ctx.fillRect(0, 0, 50, 50);
+        ctx.restore();
+
+        // 原点位置在0，0.因为save记录了形变前的位置。restore恢复到了save记录的位置
+      };
+    </script>
+  </body>
+</html>

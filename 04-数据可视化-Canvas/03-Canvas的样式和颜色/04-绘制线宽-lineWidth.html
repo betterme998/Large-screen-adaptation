@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300px" height="300px">
+      浏览器不兼容canvas
+    </canvas>
+    <script>
+      window.onload = function () {
+        // 1.拿到canvas的元素对象
+        let canvasEl = document.getElementById("tutorial");
+
+        if (!canvasEl.getContext("2d")) {
+          return;
+        }
+        // 2.拿到canvas渲染的上下文
+        let ctx = canvasEl.getContext("2d"); //2d
+
+        ctx.lineWidth = 1;
+        // 1.创建一个新的路径
+        ctx.beginPath();
+        ctx.moveTo(20.5, 20);
+        ctx.lineTo(20.5, 100);
+        ctx.closePath();
+        ctx.stroke();
+
+        // 1.lineWidth = value:设置线条宽度. 是指定路径中心到两边据距离。
+
+        // （如果以路径为中心就是 x 轴为整数）如果画 1px 像素就是两边各 0.5px。那两边像素格子会多出 0.5px 会以画笔颜色一般进行填充.所以用 canvas 画 1px 线条时，不准确
+
+        // （如果以 3.5 或者 4.5 或 5.5 等 x.5 为中心）画出的 1px 为准确的线
+
+        // 总结：没有被占满的像素会被颜色一半的线条填满，尽量让线条填满像素点
+      };
+    </script>
+  </body>
+</html>
