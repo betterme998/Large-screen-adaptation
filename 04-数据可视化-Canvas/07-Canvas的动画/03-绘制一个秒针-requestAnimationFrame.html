@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300px" height="300px">
+      浏览器不兼容canvas
+    </canvas>
+    <script>
+      window.onload = function () {
+        //1.拿到canvas的元素对象
+        let canvasE1 = document.getElementById("tutorial");
+
+        if (!canvasE1.getContext("2d")) {
+          return;
+        }
+        // 2.拿到canvas渲染的上下文
+        let ctx = canvasE1.getContext("2d");
+        requestAnimationFrame(draw);
+
+        // 这个函数就是动画的一帧
+        function draw() {
+          let second = new Date().getSeconds();
+          console.log(second);
+          ctx.clearRect(0, 0, 300, 300);
+          ctx.save();
+          // 1.开始绘图
+          ctx.translate(100, 100);
+          ctx.rotate(((Math.PI * 2) / 60) * second);
+          ctx.lineWidth = 6;
+          ctx.lineCap = "round";
+          ctx.strokeStyle = "red";
+
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -80);
+          ctx.stroke();
+
+          ctx.restore();
+          requestAnimationFrame(draw);
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        background-color: black;
+        margin: 10px;
+        border-radius: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="clock">
+      <canvas id="tutorial" width="300px" height="300px">
+        浏览器不兼容canvas
+      </canvas>
+    </div>
+    <script>
+      window.onload = function () {
+        //1.拿到canvas的元素对象
+        let canvasE1 = document.getElementById("tutorial");
+
+        if (!canvasE1.getContext("2d")) {
+          return;
+        }
+        // 2.拿到canvas渲染的上下文
+        let ctx = canvasE1.getContext("2d");
+
+        requestAnimationFrame(draw);
+
+        // 1秒会回调61次
+        function draw() {
+          ctx.clearRect(0, 0, 300, 300);
+          ctx.save();
+
+          // 1.绘制背景（白色圆）
+          ctx.save();
+          ctx.translate(150, 150);
+          ctx.fillStyle = "white";
+          ctx.beginPath();
+          ctx.arc(0, 0, 130, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // 2.绘制数字
+          ctx.save();
+          ctx.translate(150, 150);
+          // 参考线
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(130, 0);
+          ctx.closePath();
+          ctx.stroke();
+
+          // 开始画 3 数字
+          ctx.font = "30px fangsong";
+          ctx.textBaseline = "middle";
+          ctx.textAlign = "center";
+          ctx.fillText(3, 100, 0);
+          ctx.fillText(4, 90, 40);
+          ctx.restore();
+
+          ctx.restore();
+          requestAnimationFrame(draw);
+        }
+      };
+    </script>
+  </body>
+</html>

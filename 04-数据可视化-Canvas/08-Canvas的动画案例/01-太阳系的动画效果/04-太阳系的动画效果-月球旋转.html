@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300px" height="300px">
+      浏览器不兼容canvas
+    </canvas>
+    <script>
+      window.onload = function () {
+        //1.拿到canvas的元素对象
+        let canvasE1 = document.getElementById("tutorial");
+
+        if (!canvasE1.getContext("2d")) {
+          return;
+        }
+        // 2.拿到canvas渲染的上下文
+        let ctx = canvasE1.getContext("2d");
+
+        let sun = new Image();
+        sun.src = "../../img/canvas_sun.png";
+        let earth = new Image();
+        earth.src = "../../img/canvas_earth.png";
+        let moon = new Image();
+        moon.src = "../../img/canvas_moon.png";
+
+        requestAnimationFrame(draw);
+
+        // 1秒会回调61次
+        function draw() {
+          ctx.clearRect(0, 0, 300, 300);
+          ctx.save();
+          // 1.绘制背景
+          ctx.save();
+          ctx.drawImage(sun, 0, 0); //背景图
+          ctx.translate(150, 150); //移动坐标
+          ctx.strokeStyle = "rgba(0,153,255,0.4)";
+          ctx.beginPath(); //绘制轨道
+          ctx.arc(0, 0, 105, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+
+          // 2.地球
+          let second = new Date().getSeconds(); //1秒
+          let milliseconds = new Date().getMilliseconds(); //1毫秒
+          ctx.save(); //earth start
+          ctx.translate(150, 150);
+          // 地球的旋转
+          // Math.PI*2 一整个圆的弧度
+          // Math.PI*2 / 60 分成六十份
+          // Math.PI*2 / 60 * 1s 每秒的弧度
+
+          // 1s 1mm
+          // Math.PI * 2 / 60 * second + Math.PI / 2 / 60 / 1000 * milliseconds
+
+          ctx.rotate(
+            ((Math.PI * 2) / 60) * second +
+              ((Math.PI * 2) / 60 / 1000) * milliseconds
+          );
+
+          ctx.translate(105, 0);
+          ctx.drawImage(earth, -12, -12);
+
+          // 绘制月球
+          ctx.save(); //moon start
+          // 月球旋转
+          // Math.PI*2 一圈
+          // Math.PI*2 / 10 1s(10s 一圈)
+          // Math.PI*2 / 10 / 1000  （1mm弧度）
+          ctx.rotate(
+            ((Math.PI * 2) / 10) * second +
+              ((Math.PI * 2) / 10 / 1000) * milliseconds
+          );
+
+          ctx.translate(0, 28);
+          ctx.drawImage(moon, -3.5, -3.5);
+          ctx.restore(); //moon end
+
+          // 绘制地球蒙蔽
+          ctx.save();
+          ctx.fillStyle = "rgba(0,0,0,0.4)";
+          ctx.fillRect(0, -12, 40, 24);
+          ctx.restore();
+
+          ctx.restore(); //earth end
+
+          ctx.restore();
+          requestAnimationFrame(draw);
+        }
+      };
+    </script>
+  </body>
+</html>
