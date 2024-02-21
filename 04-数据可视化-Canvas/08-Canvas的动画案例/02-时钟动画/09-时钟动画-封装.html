@@ -40,8 +40,39 @@
         function draw() {
           ctx.clearRect(0, 0, 300, 300);
           ctx.save();
+          let time = new Date();
+          let hours = time.getHours();
+          let minute = time.getMinutes();
+          let second = time.getSeconds();
 
           // 1.绘制背景（白色圆）
+          drawBg();
+
+          // 2.绘制数字
+          drawNumbers();
+
+          // 3.绘制时针
+          drawHours(hours, minute, second);
+
+          // 4.绘制分针
+          drawMinute(minute, second);
+
+          // 5.绘制秒针
+          drawSecond(second);
+
+          // 6.绘制圆心
+          drawCircle();
+
+          // 7.画上的刻度
+          drawHoursTick();
+          drawMinuteTick();
+
+          ctx.restore();
+          requestAnimationFrame(draw);
+        }
+
+        // 1.绘制背景（白色圆）
+        function drawBg() {
           ctx.save();
           ctx.translate(150, 150);
           ctx.fillStyle = "white";
@@ -49,8 +80,10 @@
           ctx.arc(0, 0, 130, 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
+        }
 
-          // 2.绘制数字
+        // 2.绘制数字
+        function drawNumbers() {
           ctx.save();
           ctx.translate(150, 150);
 
@@ -66,12 +99,10 @@
             ctx.fillText(numbers[i], x, y);
           }
           ctx.restore();
+        }
 
-          // 3.绘制时针
-          let time = new Date();
-          let hours = time.getHours();
-          let minute = time.getMinutes();
-          let second = time.getSeconds();
+        // 3.绘制时针
+        function drawHours(hours, minute, second) {
           ctx.save();
           ctx.translate(150, 150);
           // Math.PI * 2 / 12 1h
@@ -91,8 +122,10 @@
           ctx.lineTo(0, -50);
           ctx.stroke();
           ctx.restore();
+        }
 
-          // 4.绘制分针
+        // 4.绘制分针
+        function drawMinute(minute, second) {
           ctx.save();
           ctx.translate(150, 150);
           ctx.rotate(
@@ -105,8 +138,10 @@
           ctx.lineTo(0, -70);
           ctx.stroke();
           ctx.restore();
+        }
 
-          // 5.绘制秒针
+        // 5.绘制秒针
+        function drawSecond(second) {
           ctx.save();
           ctx.translate(150, 150);
           ctx.rotate(((Math.PI * 2) / 60) * second);
@@ -118,8 +153,10 @@
           ctx.lineTo(0, -80);
           ctx.stroke();
           ctx.restore();
+        }
 
-          // 6.绘制圆心
+        // 6.绘制圆心
+        function drawCircle() {
           ctx.save();
           ctx.translate(150, 150);
           ctx.beginPath();
@@ -131,11 +168,12 @@
           ctx.arc(0, 0, 5, 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
-
-          // 7.画上的刻度
+        }
+        // 7.画上的刻度 时针
+        function drawHoursTick() {
           ctx.save();
           ctx.translate(150, 150);
-          for (let j = 0; j < numbers.length; j++) {
+          for (let j = 0; j < 12; j++) {
             ctx.rotate((Math.PI * 2) / 12);
             ctx.lineWidth = 3;
             ctx.beginPath();
@@ -143,7 +181,12 @@
             ctx.lineTo(0, -122);
             ctx.stroke();
           }
-
+          ctx.restore();
+        }
+        // 分针刻度
+        function drawMinuteTick() {
+          ctx.save();
+          ctx.translate(150, 150);
           for (let y = 0; y < 60; y++) {
             ctx.rotate((Math.PI * 2) / 60);
             ctx.lineWidth = 2;
@@ -153,9 +196,6 @@
             ctx.stroke();
           }
           ctx.restore();
-
-          ctx.restore();
-          requestAnimationFrame(draw);
         }
       };
     </script>
