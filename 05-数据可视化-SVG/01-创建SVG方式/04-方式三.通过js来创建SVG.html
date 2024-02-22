@@ -8,5 +8,25 @@
   <body>
     <!-- 使用JS脚本来创建SVG时，创建的元素都是需要添加命名空间的 -->
     <!-- 比如：创建<svg> 或者<rect>元素都需要添加命名空间（http://www.w3.org/2000/svg） -->
+
+    <script>
+      window.onload = function () {
+        // 1.创建svg，和rect元素
+        let xmlns = "http://www.w3.org/2000/svg";
+        let svgE1 = document.createElementNS(xmlns, "svg");
+        let rect1 = document.createElementNS(xmlns, "rect");
+
+        // 2.给svg和rect元素对象添加属性
+        svgE1.setAttributeNS(null, "version", "1.0");
+        svgE1.setAttributeNS(null, "width", "100");
+        svgE1.setAttributeNS(null, "height", "100");
+
+        rect1.setAttributeNS(null, "width", "50");
+        rect1.setAttributeNS(null, "height", "50");
+        // 3.将svg添加到body上
+        svgE1.appendChild(rect1);
+        document.body.appendChild(svgE1);
+      };
+    </script>
   </body>
 </html>
