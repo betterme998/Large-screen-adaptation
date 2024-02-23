@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      当视口宽高比 != 用户宽高比：
+        会将用户坐标系（宽或高，）等比例放大到和视口相同大小（将用户坐标系完全展示出来），并且另一个边居中（因为比例不同，
+        宽或高其中一个先放大到视口相同大小就停止放大，所以会居中处理）
+
+        添加：preserveAspectRatio："none" 属性：不保持比例缩放（用户坐标系会拉伸满整个视口坐标系）
+        preserveAspectRatio："xMinYMin"" 属性：在视口最小x和最小y轴展示（就是不居中了）
+
+
+      viewBox 语法
+      .viewBox = <min-x> <min-y> <width> <height> 比如：viewBox = "0 0 200 100"
+      .<min-x> <min-y> 确定视图框的左上角坐标（展示部分的左上角的坐标，就是从那个位置开始展示）
+      .<width> <height> 确定该视图框的宽度和高度
+
+     -->
+    <svg
+      width="400"
+      height="400"
+      viewBox="0 0 200 100"
+      preserveAspectRatio="xMinYMin"
+    >
+      <rect x="0" y="0" width="100" height="100"></rect>
+    </svg>
+  </body>
+</html>

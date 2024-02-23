@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      
+      <text>元素的基本属性
+        x和y属性决定了文本在用户坐标系中显示的位置
+        text-anchor文本流方向属性，可以有start,middle,end或者inherit值，默认值start
+        dominant-baseline基线对齐属性：有auto，middle或者hanging值，默认值：auto
+      <text>元素的字体属性：
+        font-family,font-style,font-weight,font-variant,font-stretch,font-size,font-size-adjust,kerning,letter-spacing,word-spacing
+        text-decoration
+        
+     -->
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!-- 1在svg中绘制一个文字 -->
+      <text x="40" y="100" font-size="20">
+        iPhone14
+        <!-- tspan用来标记大块文本的子部分，它必须是一个text元素，或别的tspan元素的子元素 
+        x,y: 字体在用户坐标系的位置
+        alignment-baseline 基线对齐属性：auto,baseline,middle,hanging,top,bottom... 默认是auto
+        -->
+        <tspan fill="red" x="200" y="200">￥100</tspan>
+      </text>
+    </svg>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!-- 
+        <path>元素可以绘制矩形（直角矩形或圆角矩形），圆形，椭圆，折线形，多边形，以及一些其他的形状，例如
+          贝塞尔曲线，次曲线等曲线
+
+          默认填充黑色，默认路径不会闭合
+          <path>元素有1个基本属性来设置路径点的位置
+            d : 一个点集数列，以及其他关于如何绘制路径的信息，必须M命令开头(M 就相当于移动画笔)
+       -->
+
+      <!-- 使用path 绘制一个三角形 -->
+      <!-- <path d="M 20 0, 80 50, 20 100" fill="transparent" stroke="red"></path> -->
+
+      <!-- 使用path 绘制一个闭合的三角形 -->
+      <!-- <path d="M 20 0, 80 50, 20 100 Z" fill="transparent" stroke="red"></path> -->
+
+      <!-- 使用path 绘图命令
+        大写命令，表示采用绝对定位
+        小写命令，表示采用相对定位
+        直线命令
+        M/m  moveTO
+        Z/z  Close Path
+        L/l  lineTo
+        H/h  horizontal
+        V/v  vertical
+      
+        曲线命令
+        C 三次贝塞尔曲线
+        S 简写三次贝塞尔曲线
+        Q 二次贝塞尔曲线
+        T 简写二次贝塞尔曲线
+      -->
+
+      <!-- 小写命令：相对于前面一个点进行定位 -->
+      <path
+        d="M 20 0,L 80 50,l 20 100 Z"
+        fill="transparent"
+        stroke="red"
+      ></path>
+    </svg>
+  </body>
+</html>

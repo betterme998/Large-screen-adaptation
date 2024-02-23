@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      元素的组合
+      .<g>元素是用来组合元素的容器
+      .添加到 g 元素上的变换会应用到其所有的子元素上
+      .添加到 g 元素的属性大部分会被其所有的子元素继承
+      .g 元素也可以用来定义复杂的对象，之后通过<use>元素来引用它们
+
+      <g>元素的属性（该元素只包含全局属性）
+      .核心属性：id
+      .样式属性：class，style
+      .Presentation Attributes （也可说是 CSS 属性，这些属性可以写在 CSS 中，也可作为元素的属性用）
+      .--display，fill 等可以百度有很多
+
+      .事件属性：onchange,onclick,ondblclick,ondrag...
+      .动画属性：transform
+      .其他属性百度
+     -->
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <g fill="transparent" stroke="red">
+        <circle cx="50" cy="50" r="25"></circle>
+        <circle cx="80" cy="50" r="25"></circle>
+        <circle cx="110" cy="50" r="25"></circle>
+        <circle cx="140" cy="50" r="25"></circle>
+      </g>
+    </svg>
+  </body>
+</html>
