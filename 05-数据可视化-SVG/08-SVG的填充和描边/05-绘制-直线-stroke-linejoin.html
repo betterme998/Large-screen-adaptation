@@ -12,7 +12,6 @@
       }
       body {
         background-image: url(../images/grid.png);
-        background-repeat: no-repeat;
       }
       svg {
         background-color: rgba(255, 0, 0, 0.1);
@@ -21,7 +20,14 @@
   </head>
   <body>
     <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="100" height="100"></rect>
+      <!--连接处样式  stroke-linejoin="round（圆） | mitter（默认） | bevel（切面）"   -->
+      <polyline
+        points="20 0, 80 50, 20 100"
+        stroke="red"
+        fill="transparent"
+        stroke-width="5"
+        stroke-linejoin="round"
+      ></polyline>
     </svg>
   </body>
 </html>

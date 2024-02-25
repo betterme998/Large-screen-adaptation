@@ -398,6 +398,34 @@ viewBox 语法
 .在<defs>的图形元素不会直接显示出来
 
 引入元素（use）
-<use>元素从 SVG 文档中获取节点，并
+<use>元素从 SVG 文档中获取节点，并将获取到的节点复制到指定的地方.
+.<use>等同于深克隆 DOM 树节点，克隆到 use 元素所在的位置
+.克隆的节点是不可见的，当给<use>元素应用 CSS 样式时须小心.因为克隆的 DOM 不能保证都会继承<use>元素上的 CSS 属性，但 CSS 可继承的属性会继承
+
+<use>元素的属性
+.href:需要复制元素/片段的 url 或 id（支持跨 SVG 引用）
+.x/y:元素 x/y 坐标（相对 复制元素 的位置）
+
+图形元素复用（symbol）
+. <symbol> 元素和<defs>元素类似
+
+<symbol>元素的属性
+.viewBox：定义当前<symbol>的视图框
+.x/y：symbol 元素的坐标
+.width/height：symbol 元素的宽高
+
+<symbol>和<defs>区别
+.<defs>元素没有专有的属性，而<symbol>提供了更多属性
+.<symbol>元素有自己用户坐标系，可以用于制作 SVG 精灵图
+.<symbol>元素定义的图形增加了结构和语义性，提高文档可访问性
 
 7.填充和边框
+.第一种：直接使用元素的属性，如：填充（fill）属性，描边（stroke）属性等
+.第二种：直接编写 CSS 样式，因为 SVG 也是 HTML 中的元素，也支持用 css 方式编写样式
+
+第一种：元素的属性
+.fill = "color" 支持：颜色名，十六进制值，rgb，rgba，currentColor（继承自身或父亲字体样式）
+
+第二种：CSS 样式
+.吧 background-color,border 改写成 fill 和 stroke
+.不是所有属性都能用 css 设置，如路径

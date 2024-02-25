@@ -19,7 +19,13 @@
     </style>
   </head>
   <body>
-    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+    <!-- 当这个SVG专门定义一些可复用的东西时，可以添加display：node属性 -->
+    <svg
+      style="display: none"
+      width="300"
+      height="300"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <!-- 样式 -->
         <style>
@@ -39,7 +45,7 @@
         ></rect>
 
         <!-- 定义了一个组合图形 -->
-        <g fill="transparent" stroke="red">
+        <g id="logo" fill="transparent" stroke="red">
           <circle cx="50" cy="50" r="25"></circle>
           <circle cx="80" cy="50" r="25"></circle>
           <circle cx="110" cy="50" r="25"></circle>
@@ -47,10 +53,27 @@
         </g>
         <!-- 定义渐变 -->
         <!-- 滤镜 -->
-        <!-- 样式 -->
       </defs>
 
+      <!-- 
+        引入元素（use）
+        <use>元素从 SVG 文档中获取节点，并将获取到的节点复制到指定的地方.
+        .<use>等同于深克隆 DOM 树节点，克隆到 use 元素所在的位置
+        .克隆的节点是不可见的，当给<use>元素应用 CSS 样式时须小心.因为克隆的 DOM 不能保证都会继承<use>元素上的 CSS 属性，但 CSS 可继承的属性会继承
+
+        <use>元素的属性
+        .href:需要复制元素/片段的 url 或 id（支持跨 SVG 引用）
+        .x/y:元素 x/y 坐标（相对 复制元素 的位置）
+       -->
       <!-- 在这里进行图形的复用 -->
+      <use x="100" y="100" href="#rectangle"></use>
+      <use href="#logo"></use>
+    </svg>
+
+    <!-- 在另一个svg中也可以复用 -->
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!-- width/height 这里是无效的。（在引入svg/symbol才有效） -->
+      <use x="100" y="200" href="#logo"></use>
     </svg>
   </body>
 </html>
