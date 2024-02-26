@@ -429,3 +429,76 @@ viewBox 语法
 第二种：CSS 样式
 .吧 background-color,border 改写成 fill 和 stroke
 .不是所有属性都能用 css 设置，如路径
+
+线性渐变
+.编写渐变时，必须指定一个 id 属性，use 引用需要用到
+.建议渐变内容定义在<defs>标签内部，渐变通常是可复用的
+
+使用
+.1 步：在 defs 元素内部，创建<linearGradient>节点，并添加 id 属性。
+.2 步：在<linearGradient>内编写几个<stop>结点
+--.给<stop>结点指定位置 offset 属性和 颜色 stop-color 属性来指定渐变在特定的位置上应用什么颜色
+--.offset 和 stop-color 这两个属性值，也可以通过 CSS 来指定
+.3 步：在一个元素的 fill 属性或 stroke 属性中通过 ID 来引用<linearGradient>节点
+--.比如：属性 fill 属性设置为 url（#Gradient2）即可.
+.4 步：控制渐变方向，通过（x1，y1）和（x2，y2）两个点控制
+
+SVG 毛玻璃效果
+.实现方案：
+.方案一：使用 CSS 的 backdrop-filter 或 filter 属性 （一般用 backdrop-filter 实现）
+--.backdrop-filter ：可以给一个元素后面区域添加模糊效果。适用与元素背后的所有元素。为了看到效果，必须使元素或其背景至少部分透明
+--.filter：直接将模糊或颜色偏移等模糊效果应用于指定的元素
+
+.方案二:使用 SVG 的 filter 和 feGaussianBlur 元素（建议少用）
+--.<filter>:元素作为滤镜操作的容器，该元素定义的滤镜效果需要在 SVG 元素上的 filter 属性引用
+----.x,y, width, height 定义了在画布上应用此过滤器的矩形区域。x，y 默认值-10%（相对自身）；width，height 默认值（120%相对自身）
+
+--.<feGaussianBlur>:该滤镜专门对输入图像进行高斯模糊
+----.stdDeviation 熟悉指定模糊的程度
+
+形变-transform
+.transform 属性用来定义元素及其子元素的形变的列表
+--.此属性 “可以与任何一个 SVG 中的元素一起使用。如果使用了变形，会在该元素内部建立一个新的坐标系统”
+.SVG2 开始，transform 可以作为 CSS 属性使用（作为元素属性时：支持 2D 变化，不需要单位，rotate 可指定旋转原点）
+
+transform 属性支持的函数
+.translate(x,y)平移
+.rotate(z) / rotate(z, cx, cy) 旋转 cx,cy 旋转原点
+.scale(x,y)缩放
+.skew(x,y):倾斜
+.matrix(a,b,c,d,e) 2\*3 的形变矩阵
+
+形变会产生新的坐标系
+
+.translate(x,y)函数
+.一个值时，设置 x 轴的平移，y 轴为 0
+.两个值时，设置 x,y 轴平移
+
+stroke 描边动画
+.stroke 是描边属性，专门给图形描边如果想给描边添加动画，需要用到下面两个属性
+--stroke-dasharray = "number [,number,...]" :虚线类型应用在描边上
+--stroke-dashoffset：指定在 dasharray 模式下路径的偏移量（值为 number 类型，除了可以正值，也可以取负值）
+
+描边动画实现步骤
+.1.先将描边设置为虚线
+.2.接着将描边偏移到不可见处
+.3.通过动画让描边慢慢变为可见，这样就产生了动画效果
+
+什么是 SMIL？
+.SMIL 是 W3C 推荐的可扩展标记语言，用于描述多媒体演示
+.SMIL 标记是用 XML 编写的，与 HTML 有相似之处
+.SMIL 允许开发多媒体项目，例如：文本，图像，视频，音频等
+
+SMIL 的应用
+.SVG 动画元素是基于 SMIL 实现（SVG 中使用 SMIL 实现元素有：<set>,<animate>,<animateMotion>...）
+
+SVG 动画实现方式
+.1 用 JS 脚本实现
+.2 用 CSS 样式实现
+.3 用 SMIL 实现
+
+SMIL 动画的优势
+.1.变动一个元素的数字属性（x，y...）
+.2.变动变形属性（）
+.3.变动颜色属性
+.4.物件方向与运动路径方向同步等等

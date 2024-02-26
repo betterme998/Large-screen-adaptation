@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+      #line1 {
+        /*  */
+        /* 指定为虚线 */
+        /* 边长了 速度变快 */
+        stroke-dasharray: 500px;
+        /* 偏移量500px -> 不可见 */
+        stroke-dashoffset: 500px;
+        animation: line1Move 2s linear forwards;
+      }
+      @keyframes line1Move {
+        100% {
+          /* 可见 */
+          stroke-dashoffset: 0px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!-- 
+        stroke 描边动画
+        .stroke 是描边属性，专门给图形描边如果想给描边添加动画，需要用到下面两个属性
+        --stroke-dasharray = "number [,number,...]" :虚线类型应用在描边上
+        --stroke-dashoffset：指定在 dasharray 模式下路径的偏移量（值为 number 类型，除了可以正值，也可以取负值）
+
+        描边动画实现步骤
+        .1.先将描边设置为虚线
+        .2.接着将描边偏移到不可见处
+        .3.通过动画让描边慢慢变为可见，这样就产生了动画效果
+       -->
+      <line
+        id="line1"
+        x1="100"
+        y1="70"
+        x2="200"
+        y2="70"
+        stroke="red"
+        stroke-width="5"
+      ></line>
+    </svg>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        /* background-image: url(../images/grid.png); */
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      .方案二:使用 SVG 的 filter 和 feGaussianBlur 元素（建议少用）
+          --.<filter>:元素作为滤镜操作的容器，该元素定义的滤镜效果需要在 SVG 元素上的 filter 属性引用
+          ----.x,y, width, height 定义了在画布上应用此过滤器的矩形区域。x，y 默认值-10%（相对自身）；width，height 默认值（120%相对自身）
+
+          --.<feGaussianBlur>:该滤镜专门对输入图像进行高斯模糊
+          ----.stdDeviation 熟悉指定模糊的程度
+     -->
+    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 高斯模糊 效果 -->
+        <filter id="blurFilter" x="50%" y="50%" width="50%" height="25%">
+          <feGaussianBlur stdDeviation="8"></feGaussianBlur>
+        </filter>
+      </defs>
+      <!-- 使用高斯模糊 效果 -->
+      <image
+        href="../images/avatar.jpeg"
+        width="200"
+        height="200"
+        filter="url(#blurFilter)"
+      ></image>
+    </svg>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      .box {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        /* 超出去的模糊效果 隐藏掉 */
+        overflow: hidden;
+      }
+      img {
+        /* 不推荐 */
+        filter: blur(8px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+    SVG 毛玻璃效果
+    .实现方案：
+    .方案一：使用 CSS 的 backdrop-filter 或 filter 属性 （一般用 backdrop-filter 实现）
+    --.backdrop-filter ：可以给一个元素后面区域添加模糊效果。适用与元素背后的所有元素。为了看到效果，必须使元素或其背景至少部分透明
+    --.filter：直接将模糊或颜色偏移等模糊效果应用于指定的元素
+   -->
+    <div class="box">
+      <img src="../images/avatar.jpeg" alt="" />
+    </div>
+  </body>
+</html>

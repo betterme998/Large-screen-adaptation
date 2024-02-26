@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+        /* background-repeat: no-repeat; */
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      线性渐变
+    .编写渐变时，必须指定一个 id 属性，use 引用需要用到
+    .建议渐变内容定义在<defs>标签内部，渐变通常是可复用的
+
+    使用
+    .1 步：在 defs 元素内部，创建<linearGradient>节点，并添加 id 属性。
+    .2 步：在<linearGradient>内编写几个<stop>结点
+    --.给<stop>结点指定位置 offset 属性和 颜色 stop-color 属性来指定渐变在特定的位置上应用什么颜色
+    --.offset 和 stop-color 这两个属性值，也可以通过 CSS 来指定
+    .3 步：在一个元素的 fill 属性或 stroke 属性中通过 ID 来引用<linearGradient>节点
+    --.比如：属性 fill 属性设置为 url（#Gradient2）即可.
+    .4 步：控制渐变方向，通过（x1，y1）和（x2，y2）两个点控制
+     -->
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!-- 定义可复用的元素 样式，渐变，图形，滤镜 -->
+      <defs>
+        <linearGradient id="gradient1">
+          <stop offset="0%" stop-color="red"></stop>
+          <stop offset="50%" stop-color="green"></stop>
+          <stop offset="100%" stop-color="blue"></stop>
+        </linearGradient>
+
+        <!-- 控制渐变方向 -->
+        <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="red"></stop>
+          <stop offset="50%" stop-color="green"></stop>
+          <stop offset="100%" stop-color="blue"></stop>
+        </linearGradient>
+
+        <!-- 通过形变 渐变色（了解） -->
+        <linearGradient id="gradient3" gradientTransform="rotate(120)">
+          <stop offset="0%" stop-color="red"></stop>
+          <stop offset="50%" stop-color="green"></stop>
+          <stop offset="100%" stop-color="blue"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="100" height="50" fill="url(#gradient3)"></rect>
+    </svg>
+  </body>
+</html>
