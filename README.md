@@ -498,7 +498,69 @@ SVG 动画实现方式
 .3 用 SMIL 实现
 
 SMIL 动画的优势
+
+SMIL 允许做的事情
 .1.变动一个元素的数字属性（x，y...）
 .2.变动变形属性（）
 .3.变动颜色属性
 .4.物件方向与运动路径方向同步等等
+
+SMIL 方式实现动画的优势
+.只需要在页面放几个 animate 元素就可以实现强大的动画效果，无需任何 CSS 和 JS 代码
+.SMIL 支持声明式动画。声明式动画不需指定如何做某事的细节，而是指定最终结果应该是什么，将实现细节留给客户端软件
+.浏览器自动处理，动画轨迹直接与动画对象相关联，物体和运动路径方向，管理动画时间等等
+.动画与对象本身是紧密集成的，对与代码的编写和阅读性都非常好
+
+SMIL 动画的元素
+.1.SVG 中支持 SMIL 动画元素
+. -- <set> <animate> <animateColor> <animateMotion>
+
+<set>元素提供了一种简单的方法，可以在指定的时间内设置属性值
+.经过特定时间间隔后，将属性设置为某个值（不是过度动画效果）
+.它支持所有属性类型，包括那些无法合理插值的属性类型，例如：字符串 和 布尔值.而对于可以合理插值的属性通常首选(animate)元素
+
+<set>元素常用属性
+.attributeName: 指示将在动画期间更改的目标元素的 CSS 属性（property）或属性（attribute）的名称
+.to：定义在特定时间设置目标属性的值。该值必须与目标属性的要求相匹配
+.begin:定义何时开始动画或何时丢弃元素，默认是 0
+
+<animate>元素
+.给某个属性创建过度动画效果。需将 animate 元素嵌套在要应用动画的元素内
+
+<animate>元素常用属性
+.attributeName：指示将在动画期间更改的目标元素的 CSS 属性（property）或属性（attribute）的名称
+
+.动画值属性
+--from：在动画期间将被修改的属性的初始值
+--to：在动画期间将被修改的属性的最终值
+--values：from 和 to 写法的合并
+----值需要用分号隔开：values:="2;2;3"
+----当 values 属性定义时，from，to 会被忽略
+
+.动画时间属性
+.begin:定义何时开始动画或何时丢弃元素，默认是 0
+.dur：动画的持续时间，该值必须大于 0.单位可以是小时，分钟，秒，毫秒表示
+.fill：动画的最终状态。freeze（保存最后一个动画帧的状态）|remove（保持第一个动画帧的状态）
+.repeatCount：指示动画将发送的次数：<number>|indefinite。没有默认值
+
+<animateTransform>元素
+.指定目标元素的形变（transform）属性，从而允许控制元素的平移，旋转，缩放或倾斜（类似于 CSS3 的形变）
+.在一个动画元素中，只能用一个<animateTransform>元素创建动画；存在在多个时，后面会覆盖前面的动画
+
+<animateTransform>元素常用属性
+.attributeName: 指示将在动画期间更改的目标元素的 CSS 属性（property）或属性（attribute）的名称
+.type:一个指定类型的属性，在不同的使用场景下，有不同的意思
+--在<animateTransform>元素，只支持 translate(x,y)|rotate(deg,cx,cy)|scale(x,y)|skewX(x)|skewY(y)
+
+animateMotion 元素
+.<animateMotion>定义了一个元素如何沿着运动路径进行移动
+--动画元素的坐标原点，会影响元素运动路径，建议从（0，0）开始
+
+.要复用现有路径，可在<animateMotion>中使用<mpath>元素
+
+animateMotion 元素常用属性
+.path: 定义运动的路径，值和<path>元素的 d 属性一样，也可用 href 引用一个<path>
+.rotate:动画元素自动跟随路径旋转，使元素动画方向和路径方向相同，值类型：<数字>|auto|auto-reverse;默认值：0
+
+.动画值属性：from，to，values
+.动画时间属性：begin,dur,fill,repeatCount

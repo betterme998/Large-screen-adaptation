@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-image: url(../images/grid.png);
+        /* background-repeat: no-repeat; */
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+      animateMotion 元素
+        .<animateMotion>定义了一个元素如何沿着运动路径进行移动
+        --动画元素的坐标原点，会影响元素运动路径，建议从（0，0）开始
+
+        .要复用现有路径，可在<animateMotion>中使用<mpath>元素
+
+        animateMotion 元素常用属性
+        .path: 定义运动的路径，值和<path>元素的 d 属性一样，也可用 href 引用一个<path>
+        .rotate:动画元素自动跟随路径旋转，使元素动画方向和路径方向相同，值类型：<数字>|auto|auto-reverse;默认值：0
+
+        .动画值属性：from，to，values
+        .动画时间属性：begin,dur,fill,repeatCount
+
+         动画值属性
+        --from：在动画期间将被修改的属性的初始值
+        --to：在动画期间将被修改的属性的最终值
+        --values：from 和 to 写法的合并
+        ----值需要用分号隔开：values:="2;2;3"
+        ----当 values 属性定义时，from，to 会被忽略
+
+        .动画时间属性
+        .begin:定义何时开始动画或何时丢弃元素，默认是 0
+        .dur：动画的持续时间，该值必须大于 0.单位可以是小时，分钟，秒，毫秒表示
+        .fill：动画的最终状态。freeze（保存最后一个动画帧的状态）|remove（保持第一个动画帧的状态）
+        .repeatCount：指示动画将发送的次数：<number>|indefinite。没有默认值
+     -->
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+      <!-- 1. 图像 -->
+      <path
+        id="linePath"
+        d="M 0 100, L 100 30, L 200 100, L 300 30"
+        fill="transparent"
+        stroke="red"
+      ></path>
+      <rect
+        id="rectangle"
+        x="-10"
+        y="-5"
+        width="20"
+        height="10"
+        rx="5"
+        ry="5"
+        fill="red"
+      ></rect>
+
+      <!-- 2. 动画 -->
+      <!-- 写在外面也可以：href="#rectangle" 关联 -->
+      <animateMotion
+        href="#rectangle"
+        dur="5s"
+        rotate="auto"
+        repeatCount="indefinite"
+      >
+        <!-- 复用路径 -->
+        <mpath href="#linePath"></mpath>
+      </animateMotion>
+    </svg>
+  </body>
+</html>
