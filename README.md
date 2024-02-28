@@ -564,3 +564,18 @@ animateMotion 元素常用属性
 
 .动画值属性：from，to，values
 .动画时间属性：begin,dur,fill,repeatCount
+
+Snap.svg
+.Snap.svg 是一个专门用于处理 SVG 的 javaScript 库
+.支持遮罩，剪辑，图案，全渐变，组，动画等功能
+.官网查看更多
+
+GSAP 动画库
+.是一个强大的 javascript 动画库
+
+.GSAP 无论是 HTML 元素,还是 SVG,或是 Vue,React 组件的动画,都可以满足你的需求
+.GSAP 官网:https://greensock.com/
+
+GSAP 动画时间线(TimeLine)
+.时间线用来创建易于调整,有弹性的动画序列
+.里面的动画按顺序执行(支持链式调用)

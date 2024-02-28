@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+      Snap.svg
+      .Snap.svg 是一个专门用于处理 SVG 的 javaScript 库
+      .支持遮罩，剪辑，图案，全渐变，组，动画等功能
+     -->
+    <script src="./libs/snap.svg-min.js"></script>
+    <script>
+      window.onload = function () {
+        // 1. 创建一个svg
+        let svg = Snap(300, 300);
+        // 创建的svg会被保存到paper
+        console.log(svg === svg.paper); //true
+        // 2.在svg画布中绘制一个圆
+        let c = svg.circle(100, 100, 50);
+        c.attr({
+          fill: "red",
+        });
+        // 拿到svg元素对象
+        console.log(svg.node);
+        // 4.将svg节点添加到body中
+        document.body.appendChild(svg.node);
+      };
+    </script>
+  </body>
+</html>
