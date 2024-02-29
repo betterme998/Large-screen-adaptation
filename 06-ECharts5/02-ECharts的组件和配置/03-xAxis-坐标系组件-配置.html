@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 4.ECharts 的容器(必须要有高度，宽度是可选的) -->
+    <div id="main" style="height: 400px"></div>
+
+    <!-- window.echarts -->
+    <script src="../libs/echarts-5.3.3.js"></script>
+    <script>
+      window.onload = function () {
+        // 1.基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"));
+
+        // 2.指定图表的配置项和数据
+        var option = {
+          // grid网格组件
+          grid: {
+            show: true,
+            backgroundColor: "rgba(0,255,0,0.1)",
+          },
+
+          /*
+            xAxis选项：直角坐标系grid中x轴
+              .show 是否显示x轴。：boolean类型
+              .name 坐标轴名称
+              .type 坐标轴类型。string类型
+                .value数值轴，适用于连续数据
+                .category类目轴，适用于离散的类目数据，类目数据可来源xAxis.data,series.data或dataset.source之一
+              .data 类目数据，在类目轴（type:'category'）中有效。array类型
+              .axisLine 坐标轴轴线相关设置.object类型
+              .axisTick 坐标轴刻度相关设置 object类型
+              .axisLabel 坐标轴刻度标签的相关设置.object类型
+              .splitLine 坐标轴在grid区域中的分割线
+          */
+          xAxis: {
+            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+          },
+          yAxis: {},
+          series: [
+            {
+              name: "销量",
+              type: "bar",
+              data: [5, 20, 36, 10, 10, 20],
+            },
+          ],
+        };
+
+        // 3.使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      };
+    </script>
+  </body>
+</html>
