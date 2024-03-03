@@ -634,3 +634,24 @@ Grid 网格配置（组件）
 
 .4.ECharts 图标实战
 .4.ECharts 其他补充
+
+.地图-绘制
+.ECharts 绘制地图步骤
+ECharts 可以使用 GeoJSON 格式的数据作为地图的轮廓，可以获取第三方的 GeoJSON 数据注册到 ECharts 中：
+https://github.com/echarts-maps/echarts-china-cities-js/tree/master/js/shape-with-internal-borders
+https://datav.aliyun.com/portal/school/atlas/area_selector
+
+.1.拿到 GeoJSON 数据
+.2.注册对应的地图的 GeoJSON 数据（调用 setOption 前注册）
+.3.配置 geo 选项 或 series
+
+geo 和 map series 绘制地图区别
+
+geo 地理坐标系组件
+.会生成一个 go 地理坐标系组件
+.该坐标系可以共其他系列复用（注意：其他系列复用该地理坐标系时，series 的 itemStyle 等样式不起作用）
+
+map series
+.map series 会生成内部专用的 geo 地理坐标系
+.地图主要用于地理区域数据的可视化，配合 data 使用
+.配合 visualMap 组件用于展示不同区域的人口分布密度数据

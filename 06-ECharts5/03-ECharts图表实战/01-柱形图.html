@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 4.ECharts 的容器(必须要有高度，宽度是可选的) -->
+    <div id="main" style="height: 400px"></div>
+
+    <!-- window.echarts -->
+    <script src="../libs/echarts-5.3.3.js"></script>
+    <script>
+      window.onload = function () {
+        // 1.基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"));
+
+        // 2.指定图表的配置项和数据
+        var option = {
+          backgroundColor: "rbg(40,46,72)",
+          grid: {
+            left: "5%",
+            right: "6%",
+            top: "30%",
+            bottom: "5%",
+            containLabel: true, // grid 区域是否包含坐标轴的刻度标签
+          },
+          tooltip: {},
+          xAxis: {
+            name: "月份",
+            axisLine: {
+              show: true,
+              // x轴的线颜色
+              lineStyle: {
+                color: "#42A4FF",
+              },
+            },
+            // 刻度
+            axisTick: {
+              show: false,
+            },
+            // x轴字的颜色
+            axisLabel: {
+              color: "white",
+            },
+            //
+            data: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
+          },
+          yAxis: {
+            name: "个",
+            // name 的样式
+            nameTextStyle: {
+              color: "white",
+              fontSize: 13,
+            },
+            // y轴线
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: "#42A4FF",
+              },
+            },
+            // 刻度
+            axisTick: {
+              show: false,
+            },
+            // 分割线
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: "#42A4FF",
+              },
+            },
+            // y轴字体颜色
+            axisLabel: {
+              color: "white",
+            },
+          },
+          series: [
+            {
+              name: "销量",
+              // 柱形图
+              type: "bar",
+              // 柱形图宽度
+              barWidth: 17,
+              // 柱形图样式
+              itemStyle: {
+                // 渐变
+                color: {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "#01B1FF", // 0% 处的颜色
+                    },
+                    {
+                      offset: 1,
+                      color: "#033BFF", // 100% 处的颜色
+                    },
+                  ],
+                },
+              },
+              data: [500, 2000, 3600, 1000, 1000, 2000, 4000],
+            },
+          ],
+        };
+
+        // 3.使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      };
+    </script>
+  </body>
+</html>

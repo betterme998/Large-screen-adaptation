@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 4.ECharts 的容器(必须要有高度，宽度是可选的) -->
+    <div id="main" style="height: 400px"></div>
+
+    <!-- window.echarts -->
+    <script src="../libs/echarts-5.3.3.js"></script>
+
+    <!-- 1.导入了一个中国的geo json
+      window.china_geojson = {}
+    -->
+    <script src="./geojson/china_feojson.js"></script>
+    <script>
+      window.onload = function () {
+        // 2.注册一下中国地图的 geo json （需要在setOption之前调用）
+        echarts.registerMap("中国", { geoJSON: china_geojson });
+
+        var myChart = echarts.init(document.getElementById("main"));
+        var option = {
+          // 3.在 echarts 中展示中国地图
+          geo: {
+            map: "中国", //全局的地图（创建一个地理坐标系统，供其他系列复用该坐标系统）
+            roam: true,
+          },
+
+          series: [
+            {
+              type: "map", //系列图是 地图（创建一个地理坐标系统，用来展示数据）
+              map: "中国", //展示中国地图 （因为只注册了一个中国地图）
+              roam: true,
+            },
+          ],
+        };
+
+        // 3.使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      };
+    </script>
+  </body>
+</html>
