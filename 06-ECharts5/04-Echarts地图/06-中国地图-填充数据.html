@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 4.ECharts 的容器(必须要有高度，宽度是可选的) -->
+    <div id="main" style="height: 400px"></div>
+
+    <!-- window.echarts -->
+    <script src="../libs/echarts-5.3.3.js"></script>
+
+    <!-- 导入了一个中国的geo json
+      window.china_geojson = {}
+    -->
+    <script src="./geojson/china_feojson.js"></script>
+    <script>
+      window.onload = function () {
+        // 1.注册一下中国地图的 geo json （需要在setOption之前调用）
+        echarts.registerMap("中国", { geoJSON: china_geojson });
+
+        // 1.基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById("main"));
+        var data = [
+          { name: "北京", value: 199 },
+          { name: "天津", value: 42 },
+          { name: "河北", value: 102 },
+          { name: "山西", value: 81 },
+          { name: "内蒙古", value: 47 },
+          { name: "辽宁", value: 67 },
+          { name: "吉林", value: 82 },
+          { name: "黑龙江", value: 123 },
+          { name: "上海", value: 24 },
+          { name: "江苏", value: 92 },
+          { name: "浙江", value: 114 },
+          { name: "安徽", value: 109 },
+          { name: "福建", value: 116 },
+          { name: "江西", value: 91 },
+          { name: "山东", value: 119 },
+          { name: "河南", value: 137 },
+          { name: "湖北", value: 116 },
+          { name: "湖南", value: 114 },
+          { name: "重庆", value: 91 },
+          { name: "四川", value: 125 },
+          { name: "贵州", value: 62 },
+          { name: "云南", value: 83 },
+          { name: "西藏", value: 9 },
+          { name: "陕西", value: 80 },
+          { name: "甘肃", value: 56 },
+          { name: "青海", value: 10 },
+          { name: "宁夏", value: 18 },
+          { name: "新疆", value: 180 },
+          { name: "广东", value: 123 },
+          { name: "广西", value: 59 },
+          { name: "海南", value: 14 },
+        ];
+
+        // 2.指定图表的配置项和数据
+        var option = {
+          tooltip: {},
+
+          // 1.视觉数据映射
+          visualMap: [
+            {
+              // type: "continuous", // 连续型视觉映射组件 (默认)
+              // type: "piecewise", // 分段型视觉映射组件
+              left: "20%",
+              seriesIndex: [0], // 指定取哪个系列的数据
+              // 定义 在选中范围中 的视觉元素, 对象类型。
+              inRange: {
+                color: ["#467bc0", "#04387b"], // 映射组件和地图的颜色(一般和地图色相近)
+              },
+            },
+          ],
+
+          // 2.在 echarts 中展示中国地图
+          series: [
+            {
+              name: "中国地图",
+              type: "map", //系列图是 地图（创建一个地理坐标系统，用来展示数据）
+              map: "中国", //展示中国地图 （因为只注册了一个中国地图）
+              roam: true,
+              data,
+              // 地图着色
+              itemStyle: {
+                areaColor: "#023677", //地图区域的颜色
+                borderColor: "#1180c7", //图形的描边颜色
+              },
+              emphasis: {
+                itemStyle: {
+                  areaColor: "#4499d0",
+                },
+                label: {
+                  color: "white",
+                },
+              },
+            },
+          ],
+        };
+
+        // 3.使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+      };
+    </script>
+  </body>
+</html>

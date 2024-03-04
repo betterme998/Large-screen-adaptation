@@ -655,3 +655,45 @@ map series
 .map series 会生成内部专用的 geo 地理坐标系
 .地图主要用于地理区域数据的可视化，配合 data 使用
 .配合 visualMap 组件用于展示不同区域的人口分布密度数据
+
+ECharts 常见 API
+.echarts.init
+..echarts.registerMap
+.echarts.getMap
+
+.echartslnstance.setOption 设置配置项及数据 万能接口
+.echartslnstance.getWidth ， getHeight 获取容器宽高
+.echartslnstance.resize ：修改图表尺寸
+.echartslnstance.showLoading ， hideLoading：显示和隐藏加载动画
+.echartslnstance.dispatchAction 图例开关，显示提示框 showTip 等
+.echartslnstance.dispose 销毁实例
+.echartslnstance.on 通过 on 事件添加事件处理函数
+
+# 9 大屏适配
+
+适配最多的尺寸：
+.pc 端电脑：1920px \* 1080px（当然也有少部分电脑是支持输出 4k 屏。比如小米笔记本）
+.移动设备：750px \* auto
+
+大屏设备
+.指挥大厅，展厅，展会中的大屏 （1920*1080 和 3840*2160）（4k 屏）也可以说是属于大屏.
+
+大屏的硬件设备分类
+.拼接屏，LED 屏，投影等
+
+拼接屏-
+.顾名思义就是按照一定拼接方式拼接而成
+
+拼接方式取决于使用场景
+.1920 平行* 1080px 即 1* 1 个显示屏（16：9）
+.3840 * 2160（4k 屏）， 即 2*2
+.5760*3240，即 3*3 个显示屏（16：9）
+.7680*3240，即 4*3 个显示屏（64：27）
+.9600*3240，即 5*3 个显示屏（80：27）
+
+LED 屏
+.是由若干单体屏幕模块组成的，它的像素点计算及拼接方式与拼接屏有很大区别.
+LED 可以看成矩形点阵
+
+.比如单体为 500*500 作为标准计算，每个单体模块像素点横竖都为 128px
+.横向 12 块竖向 6 块，横向像素为 128*12=1536px，竖向 128\*6=768px。可以使用横竖总像素设计
