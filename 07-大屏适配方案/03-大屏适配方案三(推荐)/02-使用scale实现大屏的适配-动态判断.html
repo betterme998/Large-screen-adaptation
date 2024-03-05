@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body,
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      width: 1920px;
+      height: 1080px;
+      box-sizing: border-box;
+      border: 3px solid red;
+      position: relative;
+
+      /* 指定缩放的原点在左上角 */
+      transform-origin: left top;
+    }
+    ul {
+      width: 100%;
+      height: 100%;
+      list-style: none;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    li {
+      width: 33.333%;
+      height: 50%;
+      box-sizing: border-box;
+      border: 2px solid green;
+      font-size: 30px;
+    }
+  </style>
+  <body>
+    <!-- 
+
+     -->
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+    <script>
+      // 两种情况：1.超宽屏按照高度比缩放 2.正常屏 按照宽度比缩放
+      // 设计稿： 1920 * 1080
+      // 目标适配：1920 * 1080 3840 * 2160 (2 * 2); 7680 * 2160(4 * 2)
+
+      // 1.设计稿的尺寸
+      let targetX = 1920;
+      let targetY = 1080;
+      let targetRatio = 16 / 9; //超宽高比率
+
+      // 2.拿到当前设备（浏览器）的宽度
+      let currentX =
+        document.documentElement.clientWidth || document.body.clientWidth;
+      let currentY =
+        document.documentElement.clientHeight || document.body.clientHeight;
+      // 1920 * 1080 -> 3840 * 2160
+
+      // 3.计算缩放比例
+      let scaleRatio = currentX / targetX; //参照宽度进行缩放 (默认情况)
+      let currentRatio = currentX / currentY; //宽高比率
+
+      // 超宽屏
+      if (currentRatio >= targetRatio) {
+        scaleRatio = currentY / targetY; //参照宽度进行缩放
+        document.body.style = `width:${targetX}px; height:${targetY}px; transform: scale(${scaleRatio}) translateX(-50%); left: 50%`;
+      } else {
+        // 4.开始缩放网页
+        document.body.style = `width:${targetX}px; height:${targetY}px; transform: scale(${scaleRatio})`;
+      }
+
+      /*
+      大屏开发 注意事项
+      .图片模糊（切图时切 1 倍图，2 倍图，大屏用大图，小屏用小图）
+      .建议使用 SVG 矢量图，不会失真
+      .动画卡顿优化 -
+      .--（创建新的渲染层，启动 GPU 加速，善用 CSS3 形变动画）
+      .---少用渐变和高斯模糊，当不需要动画时，及时关闭动画
+      */
+    </script>
+  </body>
+</html>
