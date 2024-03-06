@@ -759,6 +759,10 @@ LED 可以看成矩形点阵
 .countup.js :数据滚动插件
 .gsap：javascript 动画库
 .axios: 网络请求库
-.normalize.css :统一网页样式
+.normalize.css :统一网页样式 (下载完记得引用)
 .lodash：javascript 工具函数库
 .sass：scss 编译器
+
+3.大屏项目布局搭建
+.1920px \* 1080px 设计稿尺寸
+.目标设备 16：9
