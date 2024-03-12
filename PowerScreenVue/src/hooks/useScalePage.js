@@ -29,6 +29,7 @@ export default function useScalePage(option) {
       document.documentElement.clientWidth || document.body.clientWidth;
     let currentY =
       document.documentElement.clientHeight || document.body.clientHeight;
+    console.log(currentX, currentY);
     // 1920 * 1080 -> 3840 * 2160
 
     // 3.计算缩放比例

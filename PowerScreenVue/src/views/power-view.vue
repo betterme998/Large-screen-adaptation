@@ -2,7 +2,9 @@
   <main class="screen-bg">
     <div class="header"></div>
 
-    <div class="left-top"></div>
+    <div class="left-top">
+      <pie-charts></pie-charts>
+    </div>
     <div class="left-bottom"></div>
 
     <div class="right-top"></div>
@@ -14,7 +16,9 @@
   </main>
 </template>
 
-<script setup></script>
+<script setup>
+import PieCharts from "@/components/pie-echarts.vue";
+</script>
 
 <style scoped>
 .screen-bg {
