@@ -3,9 +3,11 @@
     <div class="header"></div>
 
     <div class="left-top">
-      <pie-charts></pie-charts>
+      <pie-charts :echartsDatas="charginPile"></pie-charts>
     </div>
-    <div class="left-bottom"></div>
+    <div class="left-bottom">
+      <line-charts :echartDatas="charginLine"></line-charts>
+    </div>
 
     <div class="right-top"></div>
     <div class="right-center"></div>
@@ -18,6 +20,12 @@
 
 <script setup>
 import PieCharts from "@/components/pie-echarts.vue";
+import LineCharts from "@/components/line-echarts.vue";
+
+import { ref } from "vue";
+import { charginPileData, charginLineData } from "./config/home-data";
+let charginPile = ref(charginPileData); // 左上角饼图数据
+let charginLine = ref(charginLineData); //左下角折线图数据
 </script>
 
 <style scoped>

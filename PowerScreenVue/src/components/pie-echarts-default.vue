@@ -8,8 +8,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from "vue";
-import useEchart from "@/hooks/useEchart";
+import * as echarts from "echarts";
+import { onMounted, ref } from "vue";
 const props = defineProps({
   width: {
     type: String,
@@ -27,30 +27,19 @@ const props = defineProps({
   },
 });
 
-// 监听echartsDatas 变化
-watch(
-  () => props.echartsDatas,
-  (newV, oldV) => {
-    setupEchart(newV);
-  }
-);
-
 // 拿到div的dom对象
 let divRef = ref(null);
-let hyChart = null;
-onMounted(() => {
-  setupEchart(props.echartsDatas);
-});
 
-function setupEchart(echartsDatas) {
-  if (!hyChart) {
-    hyChart = useEchart(divRef.value);
-  }
+onMounted(() => {
+  let myChart = echarts.init(divRef.value, null, { renderer: "svg" });
+
   // 左上角扇形饼图
   // 准备数据
-  let option = getOption(echartsDatas);
-  hyChart.setOption(option);
-}
+
+  let option = getOption(props.echartsDatas);
+
+  myChart.setOption(option);
+});
 
 function getOption(pieDatas) {
   let colors = pieDatas.map((item) => {
