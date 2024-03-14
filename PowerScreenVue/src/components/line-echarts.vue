@@ -1,10 +1,14 @@
 <template>
   <!-- echarts 的容器 -->
-  <div ref="divRef" :style="{ width: width, height: height }"></div>
+  <div
+    ref="divRef"
+    class="home"
+    :style="{ width: width, height: height }"
+  ></div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import useEchart from "@/hooks/useEchart";
 const props = defineProps({
   width: {
@@ -15,7 +19,7 @@ const props = defineProps({
     type: String,
     default: "100%",
   },
-  echartDatas: {
+  echartsDatas: {
     type: Array,
     default: function () {
       return [];
@@ -23,10 +27,7 @@ const props = defineProps({
   },
 });
 
-// 拿到dom对象
-let divRef = ref(null);
-let hyChart = null;
-
+// 监听echartsDatas 变化
 watch(
   () => props.echartsDatas,
   (newV, oldV) => {
@@ -34,19 +35,28 @@ watch(
   }
 );
 
+// 拿到div的dom对象
+let divRef = ref(null);
+let hyChart = null;
 onMounted(() => {
-  setupEchart(props.echartDatas);
+  setupEchart(props.echartsDatas);
 });
 
-function setupEchart(echartDatas) {
+function setupEchart(echartsDatas) {
   if (!hyChart) {
     hyChart = useEchart(divRef.value);
   }
-  let option = getOption(echartDatas);
+  // 左上角扇形饼图
+  // 准备数据
+  let option = getOption(echartsDatas);
   hyChart.setOption(option);
 }
 
-function getOption(echartDatas) {
+function getOption(lineDatas) {
+  const Data = lineDatas.map((item) => {
+    return item;
+  });
+  console.log(Data);
   let option = {
     // backgroundColor: 'rbg(40,46,72)',
     grid: {
@@ -124,7 +134,7 @@ function getOption(echartDatas) {
     ],
     series: [
       {
-        name: echartDatas[0].name,
+        name: Data[0].name,
         type: "line",
         smooth: true,
         stack: "总量",
@@ -156,10 +166,10 @@ function getOption(echartDatas) {
             ],
           },
         },
-        data: echartDatas[0].data,
+        data: Data[0].data,
       },
       {
-        name: echartDatas[1].name,
+        name: Data[1].name,
         type: "line",
         smooth: true,
         stack: "总量",
@@ -191,7 +201,7 @@ function getOption(echartDatas) {
             ],
           },
         },
-        data: echartDatas[1].data,
+        data: Data[1].data,
       },
     ],
   };

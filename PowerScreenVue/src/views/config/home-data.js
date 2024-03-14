@@ -38,7 +38,7 @@ export const charginPileData = [
   },
 ];
 
-// 左下角 折线图数据
+// 左下角 折线图数据 ；流程监控数据
 export const charginLineData = [
   {
     name: "正常",
@@ -47,5 +47,33 @@ export const charginLineData = [
   {
     name: "异常",
     data: [20, 12, 11, 24, 90, 330, 10, 1, 154, 90, 330, 10],
+  },
+];
+
+//
+export const chargingStatistics = [
+  {
+    name: "一月",
+    value: 500,
+  },
+  {
+    name: "二月",
+    value: 2000,
+  },
+  {
+    name: "三月",
+    value: 3600,
+  },
+  {
+    name: "四月",
+    value: 1000,
+  },
+  {
+    name: "五月",
+    value: 1000,
+  },
+  {
+    name: "六月",
+    value: 2000,
   },
 ];

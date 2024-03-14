@@ -71,7 +71,7 @@ function getOption(pieDatas) {
   let option = {
     color: colors,
     title: {
-      text: `{nameSty| 充电桩总数}\n{number|${total}}`,
+      text: `{nameSty| 设备总数}\n{number|${total}}`,
       top: "50%",
       left: "30%",
       textStyle: {

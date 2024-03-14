@@ -6,12 +6,16 @@
       <pie-charts :echartsDatas="charginPile"></pie-charts>
     </div>
     <div class="left-bottom">
-      <line-charts :echartDatas="charginLine"></line-charts>
+      <line-charts :echartsDatas="charginLine"></line-charts>
     </div>
 
     <div class="right-top"></div>
-    <div class="right-center"></div>
-    <div class="right-bottom"></div>
+    <div class="right-center">
+      <bar-charts :echartDatas="charginBar"></bar-charts>
+    </div>
+    <div class="right-bottom">
+      <right-bottom-svg></right-bottom-svg>
+    </div>
 
     <div class="center"></div>
     <div class="bottom"></div>
@@ -21,11 +25,28 @@
 <script setup>
 import PieCharts from "@/components/pie-echarts.vue";
 import LineCharts from "@/components/line-echarts.vue";
+import BarCharts from "@/components/bar-echarts.vue";
+import RightBottomSvg from "@/components/right-bottom-svg.vue";
+import { getPowerScreenData } from "@/services";
 
+import {
+  chargingStatistics,
+  charginLineData,
+  charginPileData,
+} from "./config/home-data";
 import { ref } from "vue";
-import { charginPileData, charginLineData } from "./config/home-data";
+
 let charginPile = ref(charginPileData); // 左上角饼图数据
 let charginLine = ref(charginLineData); //左下角折线图数据
+let charginBar = ref(chargingStatistics); //右中间条形图
+
+// 发起网络请求
+getPowerScreenData().then((res) => {
+  console.log(res);
+  charginPile.value = res.data.chargingPile.data;
+  charginLine.value = res.data.processMonitoring.data;
+  charginBar.value = res.data.chargingStatistics.data;
+});
 </script>
 
 <style scoped>
@@ -52,6 +73,7 @@ let charginLine = ref(charginLineData); //左下角折线图数据
   /* 背景 */
   background-image: url(../assets/images/bg_header.svg);
   background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .left-top {
