@@ -21,6 +21,7 @@ export default function useEchart(divEl) {
   }
 
   return {
+    resizeEchart,
     echartInstance,
     setOption,
   };

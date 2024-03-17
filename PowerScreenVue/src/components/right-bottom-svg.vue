@@ -35,14 +35,7 @@
         <stop offset="0.597" stop-color="#2bdcd2" />
         <stop offset="1" stop-color="#2b6bdc" />
       </linearGradient>
-      <filter
-        id="hy-filter"
-        x="275"
-        y="10"
-        width="50"
-        height="50"
-        filterUnits="userSpaceOnUse"
-      >
+      <filter id="hy-filter" filterUnits="userSpaceOnUse">
         <feGaussianBlur result="blur" stdDeviation="6.667" in="SourceAlpha" />
         <feComposite result="composite" />
         <feComposite result="composite-2" />
@@ -80,7 +73,7 @@
       class="hy-cls-2"
       d="M2.006,86.083H31.461l3.006-9.664,4.208,13.288,4.208-10.268,3.006,6.644H73.541l4.208-10.872L83.76,103l7.871-82.748,10.163,71.876,3.607-6.644h11.421l3.607,13.892L124.637,72.8l5.41,20.536,3.006-7.852h46.888l4.208-15.7,6.011,28.388,5.41-19.932,4.208,7.248h37.815L241,76l4,14,5-11,3,6h27l4-11,6,29,10-69,8,57,3-6h13l3,14,4-27,6,20,2-7h46l6-16,5,29,7-20,4,7h25"
     />
-    <circle
+    <!-- <circle
       id="curve_d_2"
       class="hy-cls-3"
       cx="299.563"
@@ -94,7 +87,12 @@
       cy="17.844"
       rx="4.828"
       ry="4.844"
-    />
+    /> -->
+    <circle class="hy-cls-3" cx="0" cy="0" r="5">
+      <animateMotion dur="6s" repeatCount="indefinite" begin="0s" rotate="auto">
+        <mpath href="#curve"></mpath>
+      </animateMotion>
+    </circle>
   </svg>
 </template>
 
