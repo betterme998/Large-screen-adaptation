@@ -50,7 +50,7 @@ export const charginLineData = [
   },
 ];
 
-//
+//数据统计
 export const chargingStatistics = [
   {
     name: "一月",
@@ -75,5 +75,30 @@ export const chargingStatistics = [
   {
     name: "六月",
     value: 2000,
+  },
+];
+
+// 异常监控
+export const exceptionMonitoringData = [
+  {
+    id: 1,
+    name: "异常1",
+    value: 5,
+    dur: "10s",
+    begin: "0s",
+  },
+  {
+    id: 2,
+    name: "异常2",
+    value: 5,
+    dur: "10s",
+    begin: "-3s",
+  },
+  {
+    id: 3,
+    name: "异常3",
+    value: 5,
+    dur: "10s",
+    begin: "-5s",
   },
 ];
