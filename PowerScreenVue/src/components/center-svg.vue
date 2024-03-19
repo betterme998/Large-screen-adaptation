@@ -317,6 +317,28 @@
           <feBlend result="blend" in2="SourceGraphic" />
           <feBlend result="blend-2" in="SourceGraphic" />
         </filter>
+        <!-- 蓝色点的滤镜效果blue-filter-2 -->
+        <filter id="blue-filter-2" filterUnits="userSpaceOnUse">
+          <feGaussianBlur result="blur" stdDeviation="6.667" in="SourceAlpha" />
+          <feComposite result="composite" />
+          <feComposite result="composite-2" />
+          <feComposite result="composite-3" />
+          <feFlood result="flood" flood-color="#1783ff" flood-opacity="0.9" />
+          <feComposite result="composite-4" operator="in" in2="composite-3" />
+          <feBlend result="blend" in2="SourceGraphic" />
+          <feBlend result="blend-2" in="SourceGraphic" />
+        </filter>
+        <!-- 橙色点的滤镜效果orange-filter-2 -->
+        <filter id="orange-filter-2" filterUnits="userSpaceOnUse">
+          <feGaussianBlur result="blur" stdDeviation="6.667" in="SourceAlpha" />
+          <feComposite result="composite" />
+          <feComposite result="composite-2" />
+          <feComposite result="composite-3" />
+          <feFlood result="flood" flood-color="#f97a00" flood-opacity="0.9" />
+          <feComposite result="composite-4" operator="in" in2="composite-3" />
+          <feBlend result="blend" in2="SourceGraphic" />
+          <feBlend result="blend-2" in="SourceGraphic" />
+        </filter>
         <filter
           id="filter-2"
           x="258"
@@ -1076,6 +1098,56 @@
               <use id="dots02" x="455" y="415" xlink:href="#image-2" />
               <use id="dots01" x="482" y="455" xlink:href="#image-2" />
             </g>
+
+            <!-- 开始给点制作动画特效 -->
+            <!-- 蓝色点动画 -->
+            <template v-for="item in [1, 2, 3]">
+              <circle class="cus-cls-blue" cx="0" cy="0" r="3">
+                <animateMotion
+                  dur="6s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                  rotate="auto"
+                >
+                  <mpath :href="`#line_b_${item}`"></mpath>
+                </animateMotion>
+              </circle>
+
+              <circle class="cus-cls-blue" cx="0" cy="0" r="3">
+                <animateMotion
+                  dur="6s"
+                  begin="-3s"
+                  repeatCount="indefinite"
+                  rotate="auto"
+                >
+                  <mpath :href="`#line_b_${item}`"></mpath>
+                </animateMotion>
+              </circle>
+            </template>
+
+            <!-- 橙色点动画 -->
+            <template v-for="item in [1, 2, 3]">
+              <circle class="cus-cls-orange" cx="0" cy="0" r="3">
+                <animateMotion
+                  dur="6s"
+                  begin="0s"
+                  repeatCount="indefinite"
+                  rotate="auto"
+                >
+                  <mpath :href="`#line_o_${item}`"></mpath>
+                </animateMotion>
+              </circle>
+              <circle class="cus-cls-orange" cx="0" cy="0" r="3">
+                <animateMotion
+                  dur="6s"
+                  begin="-3s"
+                  repeatCount="indefinite"
+                  rotate="auto"
+                >
+                  <mpath :href="`#line_o_${item}`"></mpath>
+                </animateMotion>
+              </circle>
+            </template>
           </g>
         </g>
         <g id="text">
@@ -1124,6 +1196,14 @@
         </g>
       </g>
     </svg>
+
+    <!-- 烟花特效 -->
+    <img class="lingxA" src="../assets/images/ling/lingxA.png" />
+    <img class="lingxB" src="../assets/images/ling/lingxB.png" />
+    <img class="lingxC" src="../assets/images/ling/lingxC.png" />
+    <img class="lingxD" src="../assets/images/ling/lingxD.png" />
+    <img class="lingxE" src="../assets/images/ling/lingxE.png" />
+    <img class="lingxF" src="../assets/images/ling/lingxF.png" />
   </div>
 </template>
 
@@ -1453,6 +1533,19 @@
   opacity: 0.9;
 }
 
+/* 编写蓝色点的样式 */
+.cus-cls-blue {
+  fill: #fff;
+  opacity: 0.9;
+  filter: url(#blue-filter-2);
+}
+/* 编写橙色点样式 */
+.cus-cls-orange {
+  fill: #fff;
+  opacity: 0.9;
+  filter: url(#orange-filter-2);
+}
+
 .cls-40 {
   filter: url(#filter);
 }
@@ -1523,5 +1616,169 @@
   fill: #338ed5;
   text-anchor: middle;
   font-family: "Source Han Sans CN";
+}
+
+/* icon动画特效 */
+#icon_star_guangzhou {
+  animation: updown 2.2s ease-in infinite;
+}
+#icon_home_foshan {
+  animation: updown 1.9s ease-in infinite;
+}
+#icon_location_zhongshan {
+  animation: updown 2s ease-in infinite;
+}
+#icon_hot_zhuhai {
+  animation: updown 2s ease-in infinite;
+}
+#icon_earth_dongguan {
+  animation: updown 1.7s ease-in infinite;
+}
+#icon_pie_shenzhen {
+  animation: updown 1.7s ease-in infinite;
+}
+
+@keyframes updown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.cls-3,
+.cls-4,
+.cls-29,
+.cls-28 .cls-9,
+.cls-8,
+.cls-23,
+.cls-24,
+.cls-18,
+.cls-19,
+.cls-14,
+.cls-13 {
+  animation: lightEffect 3s linear infinite;
+  opacity: 0.2;
+}
+
+@keyframes lightEffect {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 烟花特效 */
+-svg {
+  position: relative;
+}
+
+.lingxA {
+  position: absolute;
+  top: 30%;
+  left: 47%;
+}
+.lingxB {
+  position: absolute;
+  top: 35%;
+  left: 58%;
+}
+.lingxC {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+.lingxD {
+  position: absolute;
+  top: 28%;
+  left: 41%;
+}
+.lingxE {
+  position: absolute;
+  top: 28%;
+  left: 54%;
+}
+.lingxF {
+  position: absolute;
+  top: 40%;
+  left: 53%;
+}
+
+.lingxA {
+  opacity: 0;
+  animation: lingxA 2s linear infinite;
+}
+.lingxB {
+  opacity: 0;
+  animation: lingxB 2.2s linear infinite;
+}
+.lingxC {
+  opacity: 0;
+  animation: lingxC 1.7s linear infinite;
+}
+.lingxD {
+  opacity: 0;
+  animation: lingxC 2.7s linear infinite;
+}
+.lingxE {
+  opacity: 0;
+  animation: lingxB 1.2s linear infinite;
+}
+.lingxF {
+  opacity: 0;
+  animation: lingxA 1.4s linear infinite;
+}
+/* 向上移动的烟花 */
+@keyframes lingxA {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-160px);
+    opacity: 0;
+  }
+}
+
+@keyframes lingxB {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  60%,
+  to {
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
+@keyframes lingxC {
+  from {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  50%,
+  to {
+    transform: translateY(-90px);
+    opacity: 0;
+  }
 }
 </style>
