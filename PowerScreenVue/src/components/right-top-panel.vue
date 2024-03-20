@@ -23,41 +23,15 @@ import WaterBall from "./water-ball.vue";
 const props = defineProps({
   percentage: {
     type: Number,
-    default: 70
+    default: 0,
   },
   panelItems: {
     type: Array,
-    default: function() {
-      return [
-        {
-          id: 1,
-          name: "深圳",
-          percentage: "30%",
-        },
-        {
-          id: 2,
-          name: "广州",
-          percentage: "20%",
-        },
-        {
-          id: 3,
-          name: "东莞",
-          percentage: "10%",
-        },
-        {
-          id: 4,
-          name: "佛山",
-          percentage: "10%",
-        },
-        {
-          id: 5,
-          name: "其它",
-          percentage: "30%",
-        },
-      ]
-    }
-  }
-}) 
+    default: function () {
+      return [];
+    },
+  },
+});
 </script>
 
 <style scoped>
@@ -68,7 +42,6 @@ const props = defineProps({
   flex-direction: row;
   align-items: center;
 }
-
 
 .right-top-panel .right-water-ball {
   width: 269px;

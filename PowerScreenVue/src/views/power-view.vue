@@ -9,7 +9,12 @@
       <line-charts :echartsDatas="charginLine"></line-charts>
     </div>
 
-    <div class="right-top"></div>
+    <div class="right-top">
+      <right-top-panel
+        :panelItems="chargingTop4"
+        :percentage="percentage"
+      ></right-top-panel>
+    </div>
     <div class="right-center">
       <bar-charts :echartDatas="charginBar"></bar-charts>
     </div>
@@ -33,6 +38,7 @@ import BarCharts from "@/components/bar-echarts.vue";
 import RightBottomSvg from "@/components/right-bottom-svg.vue";
 import CenterSvg from "@/components/center-svg.vue";
 import bottomPanel from "@/components/bottom-panel.vue";
+import RightTopPanel from "@/components/right-top-panel.vue";
 
 import { getPowerScreenData } from "@/services";
 
@@ -47,6 +53,8 @@ import {
   exceptionMonitoringData,
   // 设备数据
   dataAnalysisData,
+  // 监控占比
+  chargingTopData,
 } from "./config/home-data";
 import { ref } from "vue";
 
@@ -55,6 +63,8 @@ let charginLine = ref(charginLineData); //左下角折线图数据
 let charginBar = ref(chargingStatistics); //右中间条形图
 let exceptionMonitoring = ref(exceptionMonitoringData); //异常监控
 let dataAnalysis = ref(dataAnalysisData); //底部设备数据
+let chargingTop4 = ref(chargingTopData); //监控占比
+let percentage = ref(0); //
 
 // 发起网络请求
 getPowerScreenData().then((res) => {
@@ -64,6 +74,8 @@ getPowerScreenData().then((res) => {
   charginBar.value = res.data.chargingStatistics.data;
   exceptionMonitoring.value = res.data.exceptionMonitoring.data;
   dataAnalysis.value = res.data.dataAnalysis.data;
+  chargingTop4.value = res.data.chargingTop4.data;
+  percentage.value = res.data.chargingTop4.totalPercentage;
 });
 </script>
 

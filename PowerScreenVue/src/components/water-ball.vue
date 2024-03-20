@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 
 const props = defineProps({
   size: {
@@ -55,7 +55,7 @@ const props = defineProps({
   // 目标进度
   percentage: {
     type: Number,
-    default: 70,
+    default: 0,
   },
   countSize: {
     type: String,
@@ -66,7 +66,18 @@ const props = defineProps({
 const countRef = ref(null);
 const waterRef = ref(null);
 
+watch(
+  () => props.percentage,
+  (newV, oldV) => {
+    startAnimat(newV);
+  }
+);
+
 onMounted(() => {
+  startAnimat(props.percentage);
+});
+
+function startAnimat(percentage) {
   let countEl = countRef.value;
   let waterEl = waterRef.value;
   let percent = countEl.innerText; // 0
@@ -79,13 +90,13 @@ onMounted(() => {
       waterEl.style.transform = "translate(0" + "," + (100 - percent) + "%)";
     }
     // 3.停止定时
-    if (percent >= props.percentage) {
-      countEl.innerHTML = props.percentage;
+    if (percent >= percentage) {
+      countEl.innerHTML = percentage;
       clearInterval(interval);
     }
     percent++;
   }, 60);
-});
+}
 </script>
 
 <style scoped>
